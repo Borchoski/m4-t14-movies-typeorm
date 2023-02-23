@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("Movies")
-class Movies {
+@Entity("Movie")
+class Movie {
     @PrimaryGeneratedColumn("increment")
     id: number;
 
@@ -18,4 +18,4 @@ class Movies {
     price: number;
 }
 
-export { Movies };
+export { Movie };

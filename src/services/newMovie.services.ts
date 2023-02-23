@@ -1,13 +1,13 @@
 import { iMoviePayload } from "../interfaces/movies.interfaces";
 import { AppDataSource } from "../data-source";
-import { Movies } from "../entities";
+import { Movie } from "../entities";
 import { AppError } from "../error";
 import { Repository } from "typeorm";
 
-const createMovieService = async (payload: iMoviePayload): Promise<Movies> => {
-    const movieRepo: Repository<Movies> = AppDataSource.getRepository(Movies);
+const createMovieService = async (payload: iMoviePayload): Promise<Movie> => {
+    const movieRepo: Repository<Movie> = AppDataSource.getRepository(Movie);
     if (await movieRepo.exist({ where: { name: payload.name } })) {
-        throw new AppError("Movie already exists", 400);
+        throw new AppError("Movie already exists.", 409);
     }
 
     const movie = movieRepo.create(payload);

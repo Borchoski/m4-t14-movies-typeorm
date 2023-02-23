@@ -1,10 +1,24 @@
-import { Repository } from "typeorm";
 import { AppDataSource } from "../data-source";
-import { Movies } from "../entities";
+import { Movie } from "../entities";
+import { iMovieRepo } from "../interfaces";
 
-const retriverMoviesService = async (): Promise<Movies[]> => {
-    const movieRepo: Repository<Movies> = AppDataSource.getRepository(Movies);
-    return await movieRepo.find();
+const retriverMoviesService = async (
+    page: number,
+    perPage: number,
+    sort: any,
+    order: any
+) => {
+    const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie);
+
+    const result = await movieRepo.findAndCount({
+        order: {
+            [sort]: order,
+        },
+        skip: perPage * (page - 1),
+        take: perPage,
+    });
+
+    return result;
 };
 
 export { retriverMoviesService };
