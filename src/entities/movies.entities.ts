@@ -8,13 +8,13 @@ class Movies {
     @Column({ length: 50, unique: true })
     name: string;
 
-    @Column({ nullable: true })
-    description: string;
+    @Column({ type: "varchar", nullable: true })
+    description?: string | undefined | null;
 
-    @Column()
+    @Column({ type: "integer" })
     duration: number;
 
-    @Column()
+    @Column({ type: "integer" })
     price: number;
 }
 

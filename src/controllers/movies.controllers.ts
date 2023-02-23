@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createMovieService } from "../services/newMovie.services";
 import { retriverMoviesService } from "../services/retriverMovies.servives";
+import { updateMoviesServices } from "../services/updateMovies.services";
 
 const createMovieController = async (req: Request, res: Response) => {
     const movie = await createMovieService(req.body);
@@ -13,4 +14,14 @@ const retriverMoviesController = async (req: Request, res: Response) => {
     return res.status(200).json(movies);
 };
 
-export { createMovieController, retriverMoviesController };
+const updateMovieController = async (req: Request, res: Response) => {
+    const updateUser = await updateMoviesServices(req.body, +req.params.id);
+
+    return res.status(201).json(updateUser);
+};
+
+export {
+    createMovieController,
+    retriverMoviesController,
+    updateMovieController,
+};

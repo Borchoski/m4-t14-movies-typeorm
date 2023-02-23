@@ -7,4 +7,6 @@ const createMovieSchema = z.object({
     price: z.number(),
 });
 
-export { createMovieSchema };
+const movieUpdateSchema = createMovieSchema.partial();
+
+export { createMovieSchema, movieUpdateSchema };
