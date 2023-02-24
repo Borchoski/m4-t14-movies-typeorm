@@ -24,9 +24,12 @@ const retriverMoviesController = async (req: Request, res: Response) => {
                 : `http://localhost:3000/movies?page=${
                       page - 1
                   }&perPage=${perPage}`,
-        nextPage: `http://localhost:3000/movies?page=${
-            page + 1
-        }&perPage=${perPage}`,
+        nextPage:
+            page * perPage > movies[1]
+                ? null
+                : `http://localhost:3000/movies?page=${
+                      page + 1
+                  }&perPage=${perPage}`,
         count: movies[1],
         data: movies[0],
     };

@@ -1,12 +1,10 @@
 import { AppDataSource } from "../data-source";
 import { Movie } from "../entities";
 import { AppError } from "../error";
-import { iMovieRepo } from "../interfaces";
+import { iMoviePartial, iMovieRepo } from "../interfaces";
 
-const updateMoviesServices = async (payload: any, id: number) => {
+const updateMoviesServices = async (payload: iMoviePartial, id: number) => {
     const movieRepo: iMovieRepo = AppDataSource.getRepository(Movie);
-
-    console.log(movieRepo);
 
     if (payload.name) {
         if (
@@ -14,7 +12,7 @@ const updateMoviesServices = async (payload: any, id: number) => {
                 name: payload.name,
             })
         ) {
-            throw new AppError("Name already exists", 409);
+            throw new AppError("Movie already exists.", 409);
         }
     }
     const oldData = await movieRepo.findOneBy({

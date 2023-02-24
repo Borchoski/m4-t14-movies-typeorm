@@ -7,7 +7,7 @@ import { AppError } from "../error";
 const verifyId = async (req: Request, res: Response, next: NextFunction) => {
     const movieRepo: Repository<Movie> = AppDataSource.getRepository(Movie);
     if (!(await movieRepo.exist({ where: { id: +req.params.id } }))) {
-        throw new AppError("message: Movie not found", 404);
+        throw new AppError("Movie not found", 404);
     }
 
     return next();

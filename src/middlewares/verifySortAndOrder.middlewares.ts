@@ -16,8 +16,6 @@ const verifySortAndOrder = async (
     const perPage = req.query.perPage!;
     const page = req.query.page!;
 
-    console.log(sort);
-
     if (sort == "price " || "duration") {
         if (order == "ASC" || "DESC") {
             req.query.order = order;

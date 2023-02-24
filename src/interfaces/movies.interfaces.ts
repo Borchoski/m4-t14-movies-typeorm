@@ -1,4 +1,4 @@
-import { Repository } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 import { z } from "zod";
 import { Movie } from "../entities";
 import { movieUpdateSchema } from "../schemas/movies.schemas";
@@ -11,6 +11,8 @@ interface iMoviePayload {
 }
 type iMovieRepo = Repository<Movie>;
 
+type iMoviePartial = DeepPartial<iMoviePayload>;
+
 type iMovieUpdate = z.infer<typeof movieUpdateSchema>;
 
-export { iMoviePayload, iMovieRepo, iMovieUpdate };
+export type { iMoviePayload, iMovieRepo, iMoviePartial, iMovieUpdate };

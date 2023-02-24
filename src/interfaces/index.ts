@@ -1,3 +1,8 @@
-import { iMoviePayload, iMovieRepo, iMovieUpdate } from "./movies.interfaces";
+import {
+    iMoviePayload,
+    iMovieRepo,
+    iMovieUpdate,
+    iMoviePartial,
+} from "./movies.interfaces";
 
-export { iMoviePayload, iMovieRepo, iMovieUpdate };
+export { iMoviePayload, iMovieRepo, iMovieUpdate, iMoviePartial };
