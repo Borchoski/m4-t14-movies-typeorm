@@ -1,21 +1,21 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity("Movies")
-class Movies {
+@Entity("Movie")
+class Movie {
     @PrimaryGeneratedColumn("increment")
     id: number;
 
     @Column({ length: 50, unique: true })
     name: string;
 
-    @Column({ nullable: true })
-    description: string;
+    @Column({ type: "varchar", nullable: true })
+    description?: string | undefined | null;
 
-    @Column()
+    @Column({ type: "integer" })
     duration: number;
 
-    @Column()
+    @Column({ type: "integer" })
     price: number;
 }
 
-export { Movies };
+export { Movie };
